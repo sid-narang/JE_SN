@@ -1,0 +1,33 @@
+---
+modules:
+  blazemeter:
+    test: SE Demo
+execution:
+- concurrency: 10
+  executor: selenium
+  hold-for: 10m
+  locations:
+    eu-central-1: 1
+    europe-west1-b: 1
+    us-central1-a: 1
+    us-east1-b: 2
+    us-west1-a: 3
+  ramp-up: 3m
+  scenario: Blazedemo.java
+scenarios:
+  Blazedemo.java:
+    additional-classpath: []
+    script: Blazedemo.java
+services:
+- local:
+  - metrics:
+    - cpu
+    - mem
+    - bytes-sent
+    - bytes-recv
+    - disk-read
+    - disk-write
+    - disk-space
+    - engine-loop
+  module: monitoring
+  run-at: local
